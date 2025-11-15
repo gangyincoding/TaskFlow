@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - 待办事项应用</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 TaskFlow</h1>
+            <p class="subtitle">简洁高效的任务管理工具</p>
+        </header>
+
+        <div class="task-input-section">
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="输入新任务..."
+                maxlength="100"
+            >
+            <button id="addTaskBtn" class="btn-add">
+                <span>添加任务</span>
+            </button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-label">总计</span>
+                <span class="stat-value" id="totalTasks">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">进行中</span>
+                <span class="stat-value" id="activeTasks">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">已完成</span>
+                <span class="stat-value" id="completedTasks">0</span>
+            </div>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="active">进行中</button>
+            <button class="filter-btn" data-filter="completed">已完成</button>
+        </div>
+
+        <ul id="taskList" class="task-list"></ul>
+
+        <div class="empty-state" id="emptyState">
+            <div class="empty-icon">✨</div>
+            <p>暂无任务，开始添加吧！</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

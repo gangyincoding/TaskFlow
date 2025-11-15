@@ -1,0 +1,455 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --bg-primary: #f9fafb;
+    --bg-secondary: #ffffff;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 600px;
+    max-height: 95vh;
+    margin: 0 auto;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: 30px;
+    animation: slideIn 0.5s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    flex-shrink: 0;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.task-input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-shrink: 0;
+}
+
+#taskInput {
+    flex: 1;
+    padding: 14px 18px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    outline: none;
+}
+
+#taskInput:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.btn-add {
+    padding: 14px 28px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.btn-add:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-add:active {
+    transform: translateY(0);
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-shrink: 0;
+}
+
+.stat-item {
+    background: var(--bg-primary);
+    padding: 15px;
+    border-radius: var(--radius);
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.stat-label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.filter-btn {
+    padding: 8px 20px;
+    border: 2px solid var(--border-color);
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.filter-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.task-list {
+    list-style: none;
+    margin-bottom: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 5px;
+    flex: 1;
+    min-height: 200px;
+}
+
+/* 自定义滚动条样式 */
+.task-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.task-list::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+    border-radius: 10px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.task-list::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Firefox滚动条样式 */
+.task-list {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--bg-primary);
+}
+
+.task-item {
+    background: var(--bg-primary);
+    padding: 16px;
+    margin-bottom: 10px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 2px solid var(--border-color);
+    transition: var(--transition);
+    animation: taskSlideIn 0.3s ease-out;
+}
+
+@keyframes taskSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.task-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.task-item.completed {
+    opacity: 0.7;
+    background: #f0fdf4;
+    border-color: var(--success-color);
+}
+
+.task-item.removing {
+    animation: taskSlideOut 0.3s ease-out forwards;
+}
+
+@keyframes taskSlideOut {
+    to {
+        opacity: 0;
+        transform: translateX(30px);
+        height: 0;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.task-checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.task-checkbox:hover {
+    border-color: var(--success-color);
+}
+
+.task-item.completed .task-checkbox {
+    background: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.task-checkbox::after {
+    content: '✓';
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 0;
+    transform: scale(0);
+    transition: var(--transition);
+}
+
+.task-item.completed .task-checkbox::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.task-text {
+    flex: 1;
+    font-size: 1rem;
+    color: var(--text-primary);
+    word-break: break-word;
+    transition: var(--transition);
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+.task-delete {
+    padding: 8px 12px;
+    background: transparent;
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    flex-shrink: 0;
+    font-weight: 500;
+}
+
+.task-delete:hover {
+    background: var(--danger-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+    display: none;
+    flex-shrink: 0;
+}
+
+.empty-state.show {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 640px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 20px;
+        max-height: 96vh;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .task-input-section {
+        flex-direction: column;
+    }
+
+    .btn-add {
+        width: 100%;
+    }
+
+    .stats {
+        gap: 10px;
+    }
+
+    .stat-item {
+        padding: 12px;
+    }
+
+    .stat-value {
+        font-size: 1.3rem;
+    }
+
+    .filter-buttons {
+        flex-wrap: wrap;
+    }
+
+    .filter-btn {
+        flex: 1;
+        min-width: 80px;
+    }
+
+    .task-item {
+        padding: 14px;
+    }
+
+    .task-delete {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .task-list {
+        max-height: 55vh;
+    }
+}
+
+@media (max-width: 400px) {
+    body {
+        padding: 5px;
+    }
+
+    .container {
+        padding: 15px;
+        max-height: 97vh;
+    }
+
+    header h1 {
+        font-size: 1.75rem;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .task-list {
+        max-height: 50vh;
+    }
+
+    .container {
+        padding: 20px;
+    }
+}
